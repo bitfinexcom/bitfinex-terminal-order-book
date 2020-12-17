@@ -1,0 +1,8 @@
+message Header {
+  message Metadata {
+    required string pair = 1;
+  }
+
+  required string protocol = 1;
+  optional Metadata metadata = 2;
+}
