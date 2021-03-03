@@ -10,10 +10,15 @@
     "varint-fraction": "^1.0.0"
   },
   "devDependencies": {
-    "protocol-buffers": "^4.2.0"
+    "hypercore": "^9.9.0",
+    "protocol-buffers": "^4.2.0",
+    "random-access-memory": "^3.1.2",
+    "standard": "^15.0.1",
+    "tape": "^5.2.1"
   },
   "scripts": {
-    "protobuf": "protocol-buffers schema.proto -o messages.js"
+    "protobuf": "protocol-buffers schema.proto -o messages.js",
+    "test": "standard && tape test.js"
   },
   "repository": {
     "type": "git",
