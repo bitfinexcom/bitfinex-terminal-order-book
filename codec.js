@@ -59,7 +59,7 @@ function decode (buf) {
     ptr += varint.decode.bytes
 
     if (compat) {
-      res[2] = buf.readDouble(ptr)
+      res[2] = buf.readDoubleLE(ptr)
       ptr += 8
     } else {
       res[2] = varintf.decode(buf, ptr)

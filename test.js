@@ -102,3 +102,37 @@ tape('append and get', async function (t) {
   t.same(e, entry)
   t.end()
 })
+
+tape('compat', async function (t) {
+  const feed = new Hypercore(ram)
+
+  await new Promise((resolve) => {
+    feed.append([
+      Buffer.from('0a1c62697466696e65782d7465726d696e616c2d6f726465722d626f6f6b12050a03425443', 'hex'),
+      Buffer.from('acc2a0cbff2e0302000000000000084001030000000000001040', 'hex')
+    ], resolve)
+  })
+
+  const book = new OrderBook(feed)
+
+  t.same(await book.latest(), { date: new Date('2021-03-03T18:44:47.020Z'), book: [[3, 2, 3], [2, 3, 4]] })
+
+  book.append(await book.latest())
+
+  t.same(await book.latest(), { date: new Date('2021-03-03T18:44:47.020Z'), book: [[3, 2, 3], [2, 3, 4]] })
+
+  const a = await new Promise((resolve) => {
+    feed.get(1, function (_, buf) {
+      resolve(buf)
+    })
+  })
+
+  const b = await new Promise((resolve) => {
+    feed.get(2, function (_, buf) {
+      resolve(buf)
+    })
+  })
+
+  t.ok(b.length < a.length, 'latest is smaller')
+  t.end()
+})
