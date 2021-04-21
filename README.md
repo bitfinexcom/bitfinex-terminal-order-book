@@ -44,8 +44,8 @@ Make a stream of snapshots. Options include:
 
 ```js
 {
-  start: <timestamp> // start from this timestamp
-  end: <timestamp>, // end before this timestamp
+  gte: <timestamp> // find timestamps greater or equal to this
+  le: <timestamp>, // find timestamps less than this
   limit: <number>, // how many to get at max?
   live: <bool> // keep the stream open?
 }

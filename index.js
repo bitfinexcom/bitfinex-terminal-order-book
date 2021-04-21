@@ -8,8 +8,8 @@ class OrderBookStream extends Readable {
 
     this.book = book
     this.seq = 1
-    this.start = toDate(opts.start) || null
-    this.end = toDate(opts.end) || null
+    this.start = toDate(opts.gte || opts.start) || null
+    this.end = toDate(opts.lt || opts.end) || null
     this.tail = !!opts.tail
     this.live = !!opts.live || this.tail
     this.limit = opts.limit === undefined ? -1 : opts.limit
