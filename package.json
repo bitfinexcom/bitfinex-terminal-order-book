@@ -1,6 +1,6 @@
 {
   "name": "bitfinex-terminal-order-book",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Bitfinex Terminal Order Book Service",
   "main": "index.js",
   "dependencies": {
